@@ -28,7 +28,7 @@ class UserModel {
 
   async getUserByEmail(email) {
     const query = {
-      text: 'SELECT id, username, email, password FROM users WHERE email = $1',
+      text: 'SELECT id, username, role, email, password FROM users WHERE email = $1',
       values: [email]
     };
 

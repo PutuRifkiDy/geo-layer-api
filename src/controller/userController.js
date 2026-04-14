@@ -63,7 +63,8 @@ class UserController {
 
       const payload = {
         id: user.id,
-        username: user.username
+        username: user.username,
+        role: user.role
       };
       const accessToken = tokenManager.generateAccessToken(payload);
       const refreshToken = tokenManager.generateRefreshToken(payload);
@@ -96,7 +97,8 @@ class UserController {
 
       const newAccessToken = tokenManager.generateAccessToken({
         id: decoded.id,
-        username: decoded.username
+        username: decoded.username,
+        role: decoded.role
       });
 
       res.status(200).json({
