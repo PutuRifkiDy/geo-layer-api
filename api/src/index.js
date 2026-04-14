@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 const usersRoutes = require('./routes/userRoutes.js');
 const pointRoutes = require('./routes/pointRoutes.js');
@@ -7,6 +8,12 @@ const pointRoutes = require('./routes/pointRoutes.js');
 const PORT = process.env.PORTAPI || 4000;
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}))
 app.use(express.json());
 app.use(express.static('public'));
 
