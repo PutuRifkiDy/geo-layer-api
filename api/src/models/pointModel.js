@@ -61,6 +61,16 @@ class PointModel {
     const result = await pool.query(query);
     return result.rows[0];
   }
+
+  async deletePoint(id) {
+    const query = {
+      text: 'DELETE FROM point_objects WHERE id = $1 RETURNING *',
+      values: [id]
+    };
+
+    const result = await pool.query(query);
+    return result.rows[0];
+  }
 }
 
 module.exports = new PointModel();

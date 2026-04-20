@@ -104,6 +104,32 @@ class PointController {
       });
     }
   }
+
+  async deletePoint(req, res) {
+    try {
+      const { id } = req.params;
+
+      const deletedPoint = await pointModel.deletePoint(id);
+
+      if (!deletedPoint) {
+        return res.status(404).json({
+          status: 'gagal',
+          message: 'ID point tidak ditemukan'
+        })
+      }
+
+      res.status(200).json({
+        status: 'berhasil',
+        message: 'Point berhasil dihapus'
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 'gagal',
+        message: 'Terjadi error di sistem kami'
+      });
+    }
+  }
 }
 
 module.exports = new PointController();

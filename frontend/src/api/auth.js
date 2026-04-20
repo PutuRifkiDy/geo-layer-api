@@ -23,7 +23,7 @@ export function removeTokens() {
 
 export async function registerUser({ username, email, password }) {
   try {
-    const response = await fetch(`${BASE_URL}/users/register`, {
+    const response = await fetch(`${BASE_URL}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
