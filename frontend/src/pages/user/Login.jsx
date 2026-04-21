@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
+import { Input, Button, message, Space } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser, putAccessToken, putRefreshToken } from '../../api/auth';
 
 function Login() {
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
+  const error = (message) => {
+    messageApi.open({
+      type: 'error',
+      content: message,
+    });
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    setErrorMsg('');
 
     const response = await loginUser({ email, password });
 
@@ -24,14 +30,14 @@ function Login() {
       putRefreshToken(response.data.refreshToken);
       navigate('/dashboard');
     } else {
-      setErrorMsg(response.message || 'Login gagal, periksa kredensial Anda.');
+      error(response.message || 'Login gagal, periksa kredensial Anda.');
     }
     setIsLoading(false);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-
+      {contextHolder}
       {/* card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 sm:p-10 space-y-8">
 
@@ -47,25 +53,18 @@ function Login() {
         {/* form */}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
 
-          {/* popup error */}
-          {errorMsg && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
-              <p className="text-sm text-red-700 font-medium">{errorMsg}</p>
-            </div>
-          )}
-
           <div className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address</label>
-              <input
+              <Input
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 required
                 value={email}
                 onChange={handleEmailChange}
-                className="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 sm:text-sm transition-all duration-200"
-                placeholder="admin@gis.com"
+                placeholder="puturifki@gmail.com"
+                className='px-4 py-2'
               />
             </div>
 
@@ -73,26 +72,24 @@ function Login() {
               <div className="flex justify-between items-center mb-1">
                 <label className="block text-sm font-medium text-gray-700" htmlFor="password">Password</label>
               </div>
-              <input
+              <Input
                 id="password"
                 name="password"
                 type="password"
                 required
                 value={password}
                 onChange={handlePasswordChange}
-                className="block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 sm:text-sm transition-all duration-200"
                 placeholder="••••••••"
+                className='px-4 py-2'
               />
             </div>
           </div>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full flex justify-center py-3 px-4 rounded-xl shadow-md text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
-          >
+          <Button
+            htmlType='submit'
+            type="primary"
+            className='w-full px-2 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-600'>
             {isLoading ? 'Memproses...' : 'Sign In'}
-          </button>
+          </Button>
         </form>
 
         {/* register */}
