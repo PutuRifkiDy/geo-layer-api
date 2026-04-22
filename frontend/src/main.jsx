@@ -22,7 +22,6 @@ root.render(
           }
         }
       }}
-
     >
       <App />
     </ConfigProvider>

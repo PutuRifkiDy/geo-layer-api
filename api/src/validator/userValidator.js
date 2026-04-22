@@ -1,5 +1,11 @@
 const Joi = require('joi');
 
+const updateUserSchema = Joi.object({
+  username: Joi.string().min(3).max(50).required(),
+  email: Joi.string().email().required(),
+  role: Joi.string().valid('admin', 'user').required()
+});
+
 const registerSchema = Joi.object({
   username: Joi.string().min(3).max(50).required(),
   email: Joi.string().email().required(),
@@ -18,5 +24,6 @@ const tokenAuthSchema = Joi.object({
 module.exports = {
   registerSchema,
   loginSchema,
-  tokenAuthSchema
+  tokenAuthSchema,
+  updateUserSchema
 };

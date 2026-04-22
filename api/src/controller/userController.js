@@ -40,7 +40,7 @@ class UserController {
           message: error.message
         });
       }
-      
+
       return res.status(500).json({
         status: 'gagal',
         message: 'Sistem kami mengalami error',
@@ -134,6 +134,103 @@ class UserController {
     }
   }
 
+  async getAllUsers(req, res) {
+    try {
+      const users = await userModel.getAllUsers();
+
+      res.status(200).json({
+        status: 'berhasil',
+        data: {
+          users
+        },
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 'gagal',
+        message: 'Sistem kami mengalami error'
+      });
+    }
+  }
+
+  async deleteUser(req, res) {
+    try {
+      const { id } = req.params;
+      await userModel.deleteUserById(id);
+
+      res.status(200).json({
+        status: 'berhasil',
+        message: 'User berhasil dihapus'
+      });
+    } catch (error) {
+      if (error.message === 'User tidak ditemukan') {
+        return res.status(404).json({
+          status: 'gagal',
+          message: error.message
+        });
+      }
+
+      return res.status(500).json({
+        status: 'gagal',
+        message: 'Sistem kami mengalami error saat menghapus data'
+      });
+    }
+  }
+
+  async getUsersById(req, res) {
+    try {
+      const { id } = req.params;
+      const user = await userModel.getUserById(id);
+
+      res.status(200).json({
+        status: 'berhasil',
+        data: {
+          user
+        }
+      });
+    } catch (error) {
+      if (error.message === 'User tidak ditemukan') {
+        return res.status(404).json({
+          status: 'gagal',
+          message: error.message
+        });
+      }
+
+      return res.status(500).json({
+        status: 'gagal',
+        message: 'Sistem kami mengalami error saat mengambil data'
+      });
+    }
+  }
+
+  async updateUserById(req, res) {
+    try {
+      const { id } = req.params;
+      const { username, email, role } = req.body;
+
+      const updatedUser = await userModel.updateUserById(id, { username, email, role });
+
+      res.status(200).json({
+        status: 'berhasil',
+        message: 'User berhasil diperbarui',
+        data: {
+          user: updatedUser
+        }
+      });
+    } catch (error) {
+      if (error.message === 'User tidak ditemukan') {
+        return res.status(404).json({
+          status: 'gagal',
+          message: error.message
+        });
+      }
+
+      return res.status(500).json({
+        status: 'gagal',
+        message: 'Sistem kami mengalami error saat memperbarui data'
+      });
+    }
+
+  }
 }
 
 module.exports = new UserController();
