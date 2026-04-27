@@ -55,7 +55,7 @@ function Login() {
           <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">
             LPK Geo <span className="text-indigo-600">System</span>
           </h1>
-          <h2 className="mt-4 text-xl font-bold text-gray-800">Pemetaan LPK Jepang Resmi di Bali</h2>
+          <h2 className="mt-4 text-xl font-bold text-gray-800">Pemetaan LPK Resmi di Bali</h2>
           <p className="mt-2 text-sm text-gray-500">Masukkan Email dan Password Untuk Masuk Kembali</p>
         </div>
 

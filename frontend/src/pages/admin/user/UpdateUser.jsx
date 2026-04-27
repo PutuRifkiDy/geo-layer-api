@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { getUserById, updateUserById } from "../../../api/users";
 import { useEffect, useState } from "react";
@@ -91,7 +91,17 @@ function UpdateUser() {
       {contextHolder}
       {user && (
         <form className="mt-8 space-y-5" onSubmit={onSubmit}>
-
+          <div className="flex justify-between">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-gray-800">Update User</h2>
+              <p className="text-sm text-gray-500">Masukkan informasi user yang ingin diperbarui.</p>
+            </div>
+            <Link to="/dashboard/users">
+              <Button type="default">
+                Kembali ke Daftar User
+              </Button>
+            </Link>
+          </div>
           <div className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username</label>
@@ -135,18 +145,16 @@ function UpdateUser() {
                 <Select.Option value="user">User</Select.Option>
               </Select>
             </div>
-
           </div>
 
           <Button
             htmlType='submit'
             type="primary"
-            className='w-full px-2 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-600'>
+            className='w-full px-2 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-600'>
             {isLoading ? 'Memproses...' : 'Update User'}
           </Button>
         </form>
       )}
-
     </DashboardLayout>
   );
 }

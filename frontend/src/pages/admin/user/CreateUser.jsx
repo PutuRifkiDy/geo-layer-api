@@ -2,7 +2,7 @@ import { useState } from "react";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { Button, Input, message, Select, Space } from "antd";
 import { registerUser } from "../../../api/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CreateUser() {
   const [messageApi, contextHolder] = message.useMessage();
@@ -70,9 +70,16 @@ function CreateUser() {
     <DashboardLayout>
       {contextHolder}
       <form className="mt-8 space-y-5" onSubmit={onSubmit}>
-        <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-gray-800">Tambah User Baru</h2>
-          <p className="text-sm text-gray-500">Masukkan informasi user baru di bawah ini.</p>
+        <div className="flex justify-between">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-gray-800">Tambah User Baru</h2>
+            <p className="text-sm text-gray-500">Masukkan informasi user baru di bawah ini.</p>
+          </div>
+          <Link to="/dashboard/users">
+            <Button type="default">
+              Kembali ke Daftar User
+            </Button>
+          </Link>
         </div>
         <div className="space-y-5">
           <div>
@@ -138,7 +145,7 @@ function CreateUser() {
         <Button
           htmlType='submit'
           type="primary"
-          className='w-full px-2 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-600'>
+          className='w-full px-2 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-600'>
           {isLoading ? 'Memproses...' : 'Sign In'}
         </Button>
       </form>

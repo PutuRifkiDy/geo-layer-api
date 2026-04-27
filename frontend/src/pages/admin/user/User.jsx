@@ -93,7 +93,7 @@ function User() {
             </Button>
           </Popconfirm>
           <Link to={`/dashboard/users/${record.id}`}>
-            <Button type="primary">
+            <Button type="primary" className="bg-indigo-600">
               Edit
             </Button>
           </Link>
@@ -115,7 +115,7 @@ function User() {
           allowClear
         />
 
-        <Button type="primary">
+        <Button type="primary" className="bg-indigo-600">
           <Link to="/dashboard/users/create">Tambah User</Link>
         </Button>
       </div>

@@ -5,7 +5,6 @@ const authModel = require('../models/authModel');
 
 class UserController {
   async register(req, res) {
-
     try {
       const { username, email, password } = req.body;
 
@@ -46,7 +45,6 @@ class UserController {
         message: 'Sistem kami mengalami error',
       });
     }
-
   }
 
   async login(req, res) {
