@@ -35,7 +35,7 @@ class ObjectTypeModel {
 
   async updateObjectType(id, { name, iconMarker, description }) {
     const query = {
-      text: `UPDATE master_object_types SET name = $1, icon_marker = $2, description = $3 WHERE id = $4 RETURNING *`,
+      text: `UPDATE master_object_types SET name = $1, icon_marker = COALESCE($2, icon_marker), description = $3 WHERE id = $4 RETURNING *`,
       values: [name, iconMarker, description, id]
     };
 

@@ -1,4 +1,4 @@
-const { Router } = require('express'); // Perbaikan destructuring di sini
+const { Router } = require('express');
 const { authenticateUser } = require('../middleware/authenticationMiddleware');
 const { validateBody } = require('../middleware/validationMiddleware');
 const { lpkDetailSchema } = require('../validator/lpkDetailValidator');

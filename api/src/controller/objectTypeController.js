@@ -1,5 +1,6 @@
 const objectTypeModel = require("../models/objectTypeModel");
-
+const fs = require('fs');
+const path = require('path');
 class ObjectTypeController {
   async getAllObjectTypes(req, res) {
     try {
@@ -90,6 +91,19 @@ class ObjectTypeController {
       const { id } = req.params;
 
       const deleteObjectType = await objectTypeModel.deleteObjectType(id);
+
+      if (!deleteObjectType) {
+        return res.status(404).json({
+          status: 'gagal',
+          message: 'ID jenis objek tidak ditemukan'
+        });
+      }
+
+      const filePath = path.join(__dirname, '../../public/images', deleteObjectType.icon_marker);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
 
       res.status(200).json({
         status: 'berhasil',
