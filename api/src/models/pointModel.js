@@ -1,14 +1,13 @@
 const pool = require('../config/database');
 
 class PointModel {
-  // user biasa bisa (public)
-  async getActivePoints(type) {
+  async getActivePoints(type_id) {
     let query = 'SELECT * FROM point_objects WHERE is_active = true';
     const values = [];
 
-    if (type) {
-      query = query + ' AND type = $1';
-      values.push(type);
+    if (type_id) {
+      query += ' AND type_id = $1';
+      values.push(type_id);
     }
 
     const result = await pool.query(query, values);
@@ -25,14 +24,13 @@ class PointModel {
     return result.rows[0];
   }
 
-  // hanya admin private
   async createPoint(data, userId) {
-    const { name, type, address, latitude, longitude, icon, owner, description } = data;
+    const { type_id, name, address, latitude, longitude } = data;
     const query = {
       text: `INSERT INTO point_objects 
-             (name, type, address, latitude, longitude, icon, owner, description, created_by) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-      values: [name, type, address, latitude, longitude, icon, owner, description, userId]
+             (type_id, created_by, name, address, latitude, longitude) 
+             VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+      values: [type_id, userId, name, address, latitude, longitude]
     };
 
     const result = await pool.query(query);
@@ -40,14 +38,15 @@ class PointModel {
   }
 
   async updatePoint(id, data) {
-    const { name, type, address, latitude, longitude, icon, owner, description } = data;
+    const { type_id, name, address, latitude, longitude } = data;
     const query = {
       text: `UPDATE point_objects SET 
-             name = $1, type = $2, address = $3, latitude = $4, longitude = $5, 
-             icon = $6, owner = $7, description = $8, updated_at = current_timestamp
-             WHERE id = $9 RETURNING *`,
-      values: [name, type, address, latitude, longitude, icon, owner, description, id]
+             type_id = $1, name = $2, address = $3, latitude = $4, longitude = $5, 
+             updated_at = current_timestamp
+             WHERE id = $6 RETURNING *`,
+      values: [type_id, name, address, latitude, longitude, id]
     };
+
     const result = await pool.query(query);
     return result.rows[0];
   }

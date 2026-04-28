@@ -3,8 +3,8 @@ const pointModel = require('../models/pointModel');
 class PointController {
   async getPoints(req, res) {
     try {
-      const { type } = req.query;
-      const points = await pointModel.getActivePoints(type);
+      const { type_id } = req.query;
+      const points = await pointModel.getActivePoints(type_id);
 
       res.status(200).json({
         status: 'berhasil',
@@ -26,10 +26,6 @@ class PointController {
       const userId = req.user.id;
       const data = req.body;
 
-      if (req.file) {
-        data.icon = req.file.filename;
-      }
-
       const newPoint = await pointModel.createPoint(data, userId);
       res.status(201).json({
         status: 'berhasil',
@@ -50,11 +46,7 @@ class PointController {
   async updatePoint(req, res) {
     try {
       const { id } = req.params;
-      const data = req.body
-
-      if (req.file) {
-        data.icon = req.file.filename;
-      }
+      const data = req.body;
 
       const updatedPoint = await pointModel.updatePoint(id, data);
 
@@ -115,7 +107,7 @@ class PointController {
         return res.status(404).json({
           status: 'gagal',
           message: 'ID point tidak ditemukan'
-        })
+        });
       }
 
       res.status(200).json({

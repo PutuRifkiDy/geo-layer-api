@@ -3,7 +3,9 @@ export const up = (pgm) => {
     id: 'id',
     type_id: {
       type: 'integer',
-      references: '"master_object_types"', onDelete: 'RESTRICT', notNull: true
+      references: '"master_object_types"', 
+      onDelete: 'RESTRICT', 
+      notNull: true
     },
     name: {
       type: 'VARCHAR(255)',
