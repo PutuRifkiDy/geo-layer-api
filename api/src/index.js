@@ -6,6 +6,7 @@ const usersRoutes = require('./routes/userRoutes.js');
 const pointRoutes = require('./routes/pointRoutes.js');
 const objectTypeRoutes = require('./routes/objectTypeRoutes.js');
 const lpkDetailRoutes = require('./routes/lpkDetailRoutes.js');
+const lpkProgramRoutes = require('./routes/lpkProgramRoutes.js');
 
 const PORT = process.env.PORTAPI || 4000;
 
@@ -23,6 +24,7 @@ app.use('/users', usersRoutes);
 app.use('/object-types', objectTypeRoutes);
 app.use('/points', pointRoutes);
 app.use('/lpk-details', lpkDetailRoutes);
+app.use('/lpk-programs', lpkProgramRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server berhasil di running di port ${PORT}`);

@@ -73,6 +73,7 @@ class LPKDetailController {
       });
     } catch (error) {
       console.log(error);
+      
       res.status(500).json({
         status: 'gagal',
         message: 'Terjadi error pada sistem kami'
