@@ -13,7 +13,7 @@ router.get('/', authenticateUser, authorizeRole('admin'), lpkGalleryController.g
 
 router.post('/:pointObjectId', authenticateUser, authorizeRole('admin'), upload.single('image_url'), validateBody(lpkGallerySchema), lpkGalleryController.createLPKGallery);
 
-router.put('/:id', authenticateUser, authorizeRole('admin'), validateBody(lpkGallerySchema), lpkGalleryController.updateLPKGallery);
+router.put('/:id', authenticateUser, authorizeRole('admin'), upload.single('image_url'), validateBody(lpkGallerySchema), lpkGalleryController.updateLPKGallery);
 
 router.delete('/:id', authenticateUser, authorizeRole('admin'), lpkGalleryController.deleteLPKGallery);
 

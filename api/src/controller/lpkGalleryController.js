@@ -95,7 +95,7 @@ class LPKGalleryController {
       }
 
       // gabungin path di lokal sama path di database
-      const filePath = path.join(__dirname, '../../public/images', this.deletedLPKGallery.image_url);
+      const filePath = path.join(__dirname, '../../public/images', deletedLPKGallery.image_url);
 
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
