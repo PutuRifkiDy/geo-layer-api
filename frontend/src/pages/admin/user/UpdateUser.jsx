@@ -102,6 +102,7 @@ function UpdateUser() {
               </Button>
             </Link>
           </div>
+
           <div className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username</label>
@@ -120,8 +121,9 @@ function UpdateUser() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address</label>
               <Input
-                id="role"
-                name="role"
+                id="email"
+                name="email"
+                type="email"
                 required
                 value={email}
                 onChange={handleEmailChange}

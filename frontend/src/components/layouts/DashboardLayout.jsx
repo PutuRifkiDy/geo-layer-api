@@ -5,6 +5,7 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  BarsOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, Avatar } from 'antd';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
@@ -24,6 +25,14 @@ const items = [
     key: '/dashboard/users',
     label: 'User',
     icon: <UserOutlined />,
+  },
+  {
+    type: 'divider',
+  },
+  {
+    key: '/dashboard/master-object-types',
+    label: 'Object Type',
+    icon: <BarsOutlined />,
   },
 ];
 

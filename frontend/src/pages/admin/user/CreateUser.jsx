@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
-import { Button, Input, message, Select, Space } from "antd";
+import { Button, Input, message, Select } from "antd";
 import { registerUser } from "../../../api/auth";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -146,7 +146,7 @@ function CreateUser() {
           htmlType='submit'
           type="primary"
           className='w-full px-2 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-600'>
-          {isLoading ? 'Memproses...' : 'Sign In'}
+          {isLoading ? 'Memproses...' : 'Submit'}
         </Button>
       </form>
     </DashboardLayout>

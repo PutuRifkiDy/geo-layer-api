@@ -15,6 +15,8 @@ router.post('/', authenticateUser, authorizeRole('admin'), upload.single('icon_m
 
 router.put('/:id', authenticateUser, authorizeRole('admin'), upload.single('icon_marker'), validateBody(objectTypeSchema), objectTypeController.updateObjectType);
 
+router.get('/:id', authenticateUser, authorizeRole('admin'), objectTypeController.getObjectTypeById);
+
 router.delete('/:id', authenticateUser, authorizeRole('admin'), objectTypeController.deleteObjectType);
 
 module.exports = router;

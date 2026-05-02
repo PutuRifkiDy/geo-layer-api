@@ -54,6 +54,26 @@ class ObjectTypeController {
     }
   }
 
+  async getObjectTypeById(req, res) {
+    try {
+      const { id } = req.params;
+      const objectType = await objectTypeModel.getObjectTypeById(id);
+
+      res.status(200).json({
+        status: 'berhasil',
+        data: {
+          objectType
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 'gagal',
+        message: 'Sistem kami ada error'
+      });
+    }
+  }
+
   async updateObjectType(req, res) {
     try {
       const { id } = req.params;

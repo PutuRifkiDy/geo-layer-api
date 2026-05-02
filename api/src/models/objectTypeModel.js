@@ -33,6 +33,19 @@ class ObjectTypeModel {
     return result.rows[0];
   }
 
+  async getObjectTypeById(id) {
+    const query = {
+      text: 'SELECT * FROM master_object_types WHERE id = $1',
+      values: [id]
+    };
+
+    const result = await pool.query(query);
+    if (result.rows.length == 0) {
+      throw new Error('Jenis objek tidak ditemukan');
+    }
+    return result.rows[0];
+  }
+
   async updateObjectType(id, { name, iconMarker, description }) {
     const query = {
       text: `UPDATE master_object_types SET name = $1, icon_marker = COALESCE($2, icon_marker), description = $3 WHERE id = $4 RETURNING *`,
