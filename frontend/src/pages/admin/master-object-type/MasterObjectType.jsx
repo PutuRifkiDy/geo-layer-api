@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Input, Table, Popconfirm, message, Modal } from "antd";
 import { SearchOutlined, QuestionCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
-import { deleteObjectType, getObjectTypes } from "../../../api/object-types";
+import { deleteObjectType, getObjectTypes } from "../../../api/object-type";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -107,7 +107,7 @@ function MasterObjectType() {
       title: 'Aksi', key: 'aksi', render: (text, record) => (
         <div className="flex gap-2">
           <Link to={`/dashboard/master-object-types/update/${record.id}`}>
-            <Button type="primary">
+            <Button type="primary" className="bg-indigo-600">
               Update
             </Button>
           </Link>
@@ -141,9 +141,11 @@ function MasterObjectType() {
           allowClear
         />
 
-        <Button type="primary" className="bg-indigo-600">
-          <Link to="/dashboard/master-object-types/create">Tambah Object Type</Link>
-        </Button>
+        <Link to="/dashboard/master-object-types/create">
+          <Button type="primary" className="bg-indigo-600">
+            Tambah Object Type
+          </Button>
+        </Link>
       </div>
       <Table
         className="mt-5"

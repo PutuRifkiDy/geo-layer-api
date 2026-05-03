@@ -4,7 +4,7 @@ import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Dragger from "antd/es/upload/Dragger";
-import { createObjectType } from "../../../api/object-types";
+import { createObjectType } from "../../../api/object-type";
 import TextArea from "antd/es/input/TextArea";
 
 function CreateMasterObjectType() {
@@ -100,7 +100,7 @@ function CreateMasterObjectType() {
         </div>
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="name">Nama</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="name">Nama <span className="text-red-500">*</span></label>
             <Input
               id="name"
               name="name"
@@ -114,7 +114,7 @@ function CreateMasterObjectType() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="description">Deskripsi</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="description">Deskripsi <span className="text-red-500">*</span></label>
             <TextArea
               id="description"
               name="description"
@@ -128,7 +128,7 @@ function CreateMasterObjectType() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Icon Marker</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Icon Marker <span className="text-red-500">*</span></label>
             <Dragger {...uploadIconMarker}>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />

@@ -1,16 +1,6 @@
-import { getAccessToken } from "./auth";
+import { fetchWithToken } from "./user";
 
 const BASE_URL = 'http://localhost:4000';
-
-export async function fetchWithToken(url, options = {}) {
-  return fetch(url, {
-    ...options,
-    headers: {
-      ...options.headers,
-      Authorization: `Bearer ${getAccessToken()}`,
-    }
-  });
-}
 
 export async function getObjectTypes() {
   try {

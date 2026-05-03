@@ -7,7 +7,9 @@ const pointController = require('../controller/pointController');
 
 const router = Router();
 
-router.get('/', pointController.getPoints);
+router.get('/', authenticateUser, authorizeRole('admin'),pointController.getAllPoints);
+
+router.get('/:id', authenticateUser, authorizeRole('admin'), pointController.getPointById);
 
 router.post('/', authenticateUser, authorizeRole('admin'), validateBody(pointSchema), pointController.createPoint);
 

@@ -83,7 +83,7 @@ function CreateUser() {
         </div>
         <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username <span className="text-red-500">*</span></label>
             <Input
               id="username"
               name="username"
@@ -97,7 +97,7 @@ function CreateUser() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address <span className="text-red-500">*</span></label>
             <Input
               id="email"
               name="email"
@@ -111,7 +111,7 @@ function CreateUser() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">Password</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">Password <span className="text-red-500">*</span></label>
             <Input
               id="password"
               name="password"
@@ -125,7 +125,7 @@ function CreateUser() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="role">Role</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="role">Role <span className="text-red-500">*</span></label>
             <Select
               id="role"
               name="role"

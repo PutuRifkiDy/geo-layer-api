@@ -6,6 +6,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   BarsOutlined,
+  EyeOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, Avatar } from 'antd';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
@@ -34,6 +35,14 @@ const items = [
     label: 'Object Type',
     icon: <BarsOutlined />,
   },
+  {
+    type: 'divider',
+  },
+  {
+    key: '/dashboard/point-objects',
+    label: 'Point Object',
+    icon: <EyeOutlined />,
+  }
 ];
 
 function DashboardLayout({ children }) {

@@ -46,6 +46,14 @@ class UserModel {
   }
 
   async deleteUserById(id) {
+    const user = await pool.query('SELECT email FROM users WHERE id = $1', [id]);
+    if (user.rows.length === 0) {
+      throw new Error('User tidak ditemukan');
+    }
+    if (user.rows[0].email === 'admingis@gmail.com') {
+      throw new Error('User admin tidak dapat dihapus');
+    }
+
     const query = {
       text: 'DELETE FROM users WHERE id = $1',
       values: [id]

@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
-import { getUserById, updateUserById } from "../../../api/users";
+import { getUserById, updateUserById } from "../../../api/user";
 import { useEffect, useState } from "react";
 import { Button, Input, Select, message, Space } from "antd";
 
@@ -105,7 +105,7 @@ function UpdateUser() {
 
           <div className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">Username <span className="text-red-500">*</span></label>
               <Input
                 id="username"
                 name="username"
@@ -119,7 +119,7 @@ function UpdateUser() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Email Address <span className="text-red-500">*</span></label>
               <Input
                 id="email"
                 name="email"
@@ -133,7 +133,7 @@ function UpdateUser() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Role</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">Role <span className="text-red-500">*</span></label>
               <Select
                 id="role"
                 name="role"

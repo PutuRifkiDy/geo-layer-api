@@ -2,7 +2,7 @@ import { Button, Input, Table, Popconfirm, message, Space } from "antd";
 import { SearchOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { useEffect, useState } from "react";
-import { deleteUser, getUsers } from "../../../api/users";
+import { deleteUser, getUsers } from "../../../api/user";
 import { Link } from "react-router-dom";
 
 function User() {

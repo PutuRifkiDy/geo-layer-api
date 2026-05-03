@@ -2,7 +2,7 @@ import { Button, Input, message } from "antd";
 import { InboxOutlined } from '@ant-design/icons';
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getObjectTypeById, updateObjectType } from "../../../api/object-types";
+import { getObjectTypeById, updateObjectType } from "../../../api/object-type";
 import { useEffect, useState } from "react";
 import Dragger from "antd/es/upload/Dragger";
 
@@ -122,7 +122,7 @@ export default function UpdateMasterObjectType() {
 
           <div className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="name">Name</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="name">Name <span className="text-red-500">*</span></label>
               <Input
                 id="name"
                 name="name"
@@ -136,7 +136,7 @@ export default function UpdateMasterObjectType() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="description">Description</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="description">Description <span className="text-red-500">*</span></label>
               <Input
                 id="description"
                 name="description"
@@ -150,7 +150,7 @@ export default function UpdateMasterObjectType() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Icon Marker</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="icon_marker">Icon Marker <span className="text-red-500">*</span></label>
 
               {typeof iconMarker === 'string' && iconMarker !== "" && (
                 <div className="mb-3 text-sm text-blue-600 bg-blue-50 p-2 rounded border border-blue-200">
