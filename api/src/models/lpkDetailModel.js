@@ -1,13 +1,24 @@
 const pool = require('../config/database');
 
 class LPKDetailModel {
-  async getLPKDetails() {
+  async getLPKDetails(pointObjectId) {
     const query = {
-      text: 'SELECT * FROM lpk_details',
+      text: 'SELECT * FROM lpk_details WHERE point_object_id = $1',
+      values: [pointObjectId]
     };
 
     const result = await pool.query(query);
     return result.rows;
+  }
+
+  async getLpkDetailById(id) {
+    const query = {
+      text: 'SELECT * FROM lpk_details WHERE id = $1',
+      values: [id]
+    };
+
+    const result = await pool.query(query);
+    return result.rows[0];
   }
 
   async createLPKDetail(data, pointObjectId) {

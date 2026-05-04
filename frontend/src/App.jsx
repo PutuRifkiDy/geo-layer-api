@@ -12,6 +12,9 @@ import UpdateMasterObjectType from './pages/admin/master-object-type/UpdateMaste
 import PointObject from './pages/admin/point-object/PointObject';
 import CreatePointObject from './pages/admin/point-object/CreatePointObject';
 import UpdatePointObject from './pages/admin/point-object/UpdatePointObject';
+import LpkDetail from './pages/admin/lpk-detail/LpkDetail';
+import CreateLpkDetail from './pages/admin/lpk-detail/CreateLpkDetail';
+import UpdateLpkDetail from './pages/admin/lpk-detail/UpdateLpkDetail';
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
       <Route path='/dashboard/point-objects' element={<PointObject />} />
       <Route path='/dashboard/point-objects/create' element={<CreatePointObject />} />
       <Route path='/dashboard/point-objects/update/:id' element={<UpdatePointObject />} />
+      <Route path='/dashboard/lpk-details/:pointObjectId' element={<LpkDetail />} />
+      <Route path='/dashboard/lpk-details/create/:pointObjectId' element={<CreateLpkDetail />} />
+      <Route path='/dashboard/lpk-details/update/:id' element={<UpdateLpkDetail />} />
     </Routes>
   );
 }

@@ -7,7 +7,9 @@ const lpkDetailController = require('../controller/lpkDetailController');
 
 const router = Router();
 
-router.get('/', authenticateUser, authorizeRole('admin'), lpkDetailController.getLPKDetails);
+router.get('/:pointObjectId', authenticateUser, authorizeRole('admin'), lpkDetailController.getLPKDetails);
+
+router.get('/detail/:id', authenticateUser, authorizeRole('admin'), lpkDetailController.getLpkDetailById);
 
 router.post('/:pointObjectId', authenticateUser, authorizeRole('admin'), validateBody(lpkDetailSchema), lpkDetailController.createLPKDetail);
 

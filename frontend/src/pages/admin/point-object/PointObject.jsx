@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../../components/layouts/DashboardLayout";
-import { Button, Input, message, Popconfirm, Table } from "antd";
+import { Button, Input, message, Popconfirm, Table, Tooltip } from "antd";
 import { SearchOutlined, QuestionCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import { deletePointObject, getPointObjects } from "../../../api/point-object";
@@ -119,8 +119,14 @@ function PointObject() {
     {
       title: 'Aksi',
       key: 'aksi',
+      fixed: 'right',
       render: (text, record) => (
         <div className="flex gap-2">
+          <Tooltip title="Lihat LPK Detail" placement="top">
+            <Link to={`/dashboard/lpk-details/${record.id}`}>
+              <Button type="default" icon={<EyeOutlined />}></Button>
+            </Link>
+          </Tooltip>
           <Link to={`/dashboard/point-objects/update/${record.id}`}>
             <Button type="primary" className="bg-indigo-600">
               Edit

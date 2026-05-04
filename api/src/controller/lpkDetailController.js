@@ -3,12 +3,40 @@ const lpkDetailModel = require('../models/lpkDetailModel');
 class LPKDetailController {
   async getLPKDetails(req, res) {
     try {
-      const lpkDetails = await lpkDetailModel.getLPKDetails();
+      const { pointObjectId } = req.params;
+      const lpkDetails = await lpkDetailModel.getLPKDetails(pointObjectId);
 
       res.status(200).json({
         status: 'berhasil',
         data: {
           lpkDetails
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 'gagal',
+        message: 'Terjadi error pada sistem kami'
+      });
+    }
+  }
+
+  async getLpkDetailById(req, res) {
+    try {
+      const { id } = req.params;
+      const lpkDetail = await lpkDetailModel.getLpkDetailById(id);
+
+      if (!lpkDetail) {
+        return res.status(404).json({
+          status: 'gagal',
+          message: 'Detail LPK tidak ditemukan'
+        });
+      }
+
+      res.status(200).json({
+        status: 'berhasil',
+        data: {
+          lpkDetail
         }
       });
     } catch (error) {

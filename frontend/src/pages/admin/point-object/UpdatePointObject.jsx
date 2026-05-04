@@ -119,7 +119,7 @@ function UpdatePointObject() {
 
   useEffect(() => {
     const map = Leaflet.map(containerMap.current).setView([-8.409518, 115.188919], 10);
-    mapRef.current = map; // Simpan instance map ke ref agar bisa diakses fetchPointById
+    mapRef.current = map; 
 
     Leaflet.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
